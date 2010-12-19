@@ -55,7 +55,7 @@ struct _utf8_range utf8_ranges[6]=
 //PRIVATE
 
 /**
-* Creates an new string with size 'size'.
+* Creates a new string with size 'size'.
 * The function will increase the size by one to add space for the terminating zero character.
 * 
 * @param size Size of the string, exclusive of terminating zero character.
