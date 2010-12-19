@@ -1,0 +1,14 @@
+prefix=/usr/
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Scriptify
+Description: Scriptify library
+Version: 0.1.0
+URL: http://scriptify.org
+Requires: gc
+Libs: -L${libdir} -lscriptify
+Cflags: -I${includedir}/scriptify
+
+

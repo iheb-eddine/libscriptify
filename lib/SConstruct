@@ -1,0 +1,3 @@
+env = Environment()
+env.SharedLibrary(target="scriptify",source=Glob('*.c'),LIBS='gc')
+

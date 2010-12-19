@@ -1,0 +1,29 @@
+from SCons.Script.SConscript import SConsEnvironment
+import os
+
+# ----------------------------------------------------------
+# define Unit Test function
+# borrowed from: http://www.scons.org/wiki/UnitTests
+# ----------------------------------------------------------
+
+def UnitTest(env, source, **kwargs):
+	test = env.Program(source, **kwargs)
+
+	parentdir =os.path.dirname(os.path.dirname(test[0].abspath))
+	ld_library_path = parentdir+'/lib'
+	command = 'LD_LIBRARY_PATH='+ld_library_path+' '+test[0].abspath
+	env.AddPostAction(test, command)
+	env.Alias('check', test)
+	env.AlwaysBuild(test)
+	return test
+
+SConsEnvironment.UnitTest = UnitTest
+
+# ----------------------------------------------------------
+# all .c files in this folder are unit tests
+# ----------------------------------------------------------
+
+env = Environment()
+for file in Glob('*.c'):
+	env.UnitTest(source=file,LIBS=['scriptify','check'], LIBPATH='../lib',CPPPATH = '../lib')
+
