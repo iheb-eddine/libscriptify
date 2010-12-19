@@ -38,18 +38,32 @@ typedef char* string;
 #define CHAR_LF 0x0a;
 #define CHAR_CR 0x0d;
 
+enum _UTF8_CHARTYPE
+{
+	  UTF8_B1 //start of 1-char sequence
+	, UTF8_TAIL  //follow-on char in multichar sequence
+	, UTF8_B2 //start of 2-char sequence
+	, UTF8_B3 //start of 3-char sequence
+	, UTF8_B4 //start of 4-char sequence
+	, UTF8_ERROR //character illegal in utf8
+};
+
+typedef enum _UTF8_CHARTYPE UTF8_CHARTYPE;
+
 /* new string*/
 string string_new(size_t size);
 string string_new_copy(string str);
 
 /* utf8 functions*/
-int string_utf8_getbytetype(char c);
+UTF8_CHARTYPE string_utf8_getbytetype(char c);
 size_t string_length_utf8(string str);
 string string_substr_utf8(string str,size_t start,size_t size);
 string string_tolower_utf8(string str);
 string string_toupper_utf8(string str);
 string string_charat_utf8(string str,size_t index);
 bool string_valid_utf8(string str);
+bool utf8_isspace(string utf8character);
+string string_trim_utf8(string str, bool left, bool right);
 
 /* string functions*/
 bool string_equal(string str1, string str2);
@@ -57,7 +71,7 @@ size_t string_length(string str);
 string string_substr(string str,size_t start,size_t size);
 string string_tolower(string str);
 string string_toupper(string str);
-string string_charat(string str, size_t index);
+char string_charat(string str, size_t index);
 string string_trim(string str, bool left, bool right);
 string string_format(string format, ...);
 
