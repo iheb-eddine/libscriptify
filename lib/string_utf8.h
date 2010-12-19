@@ -40,10 +40,10 @@ typedef char* string;
 
 /* new string*/
 string string_new(size_t size);
-string string_new_str(string str);
+string string_new_copy(string str);
 
 /* utf8 functions*/
-int utf8_getbytetype(char c);
+int string_utf8_getbytetype(char c);
 size_t string_length_utf8(string str);
 string string_substr_utf8(string str,size_t start,size_t size);
 string string_tolower_utf8(string str);

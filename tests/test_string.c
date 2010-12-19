@@ -27,49 +27,49 @@
 
 START_TEST (test_string_new)
 {
-    string s = string_new_str("Hello World");
+    string s = string_new_copy("Hello World");
 	fail_unless (string_equal(s, "Hello World") == 1, "string_new failed");
 }
 END_TEST
 
 START_TEST (test_string_length)
 {
-    string s = string_new_str("Hello World");
+    string s = string_new_copy("Hello World");
 	fail_unless (string_length(s) == strlen("Hello World"), "string_length failed");
 }
 END_TEST
 
 START_TEST (test_string_substr)
 {
-    string s   = string_substr(string_new_str("Hello World"), 6, 5);
+    string s   = string_substr(string_new_copy("Hello World"), 6, 5);
 	fail_unless (string_equal(s, "World"), "string_substr failed");
 }
 END_TEST
 
 START_TEST (test_string_tolower)
 {
-    string s   = string_tolower(string_new_str("Hello World"));
+    string s   = string_tolower(string_new_copy("Hello World"));
 	fail_unless (string_equal(s, "hello world"), "string_tolower failed");
 }
 END_TEST
 
 START_TEST (test_string_toupper)
 {
-    string s   = string_toupper(string_new_str("Hello World"));
+    string s   = string_toupper(string_new_copy("Hello World"));
 	fail_unless (string_equal(s, "HELLO WORLD"), "string_toupper failed");
 }
 END_TEST
 
 START_TEST (test_string_charat)
 {
-    string s   = string_charat(string_new_str("Hello World"), 4);
+    string s   = string_charat(string_new_copy("Hello World"), 4);
 	fail_unless (string_equal(s, "o"), "string_charat failed");
 }
 END_TEST
 
 START_TEST (test_string_trim)
 {
-    string s   = string_trim(string_new_str("    Hello World     "), 1, 1);
+    string s   = string_trim(string_new_copy("    Hello World     "), 1, 1);
 	fail_unless (string_equal(s, "Hello World"), "string_trim failed");
 }
 END_TEST
@@ -83,42 +83,42 @@ END_TEST
 
 START_TEST (test_string_length_utf8)
 {
-    string s = string_new_str("Hello World");
+    string s = string_new_copy("Hello World");
 	fail_unless (string_length_utf8(s) == strlen("Hello World"), "string_length_utf8 failed");
 }
 END_TEST
 
 START_TEST (test_string_substr_utf8)
 {
-    string s   = string_substr_utf8(string_new_str("Hello World"), 6, 5);
+    string s   = string_substr_utf8(string_new_copy("Hello World"), 6, 5);
 	fail_unless (string_equal(s, "World"), "string_substr_utf8 failed");
 }
 END_TEST
 
 START_TEST (test_string_tolower_utf8)
 {
-    string s   = string_tolower_utf8(string_new_str("Hello World"));
+    string s   = string_tolower_utf8(string_new_copy("Hello World"));
 	fail_unless (string_equal(s, "hello world"), "string_tolower_utf8 failed");
 }
 END_TEST
 
 START_TEST (test_string_toupper_utf8)
 {
-    string s   = string_toupper_utf8(string_new_str("Hello World"));
+    string s   = string_toupper_utf8(string_new_copy("Hello World"));
 	fail_unless (string_equal(s, "HELLO WORLD"), "string_toupper_utf8 failed");
 }
 END_TEST
 
 START_TEST (test_string_charat_utf8)
 {
-    string s   = string_charat_utf8(string_new_str("Hello World"), 4);
+    string s   = string_charat_utf8(string_new_copy("Hello World"), 4);
 	fail_unless (string_equal(s, "o"), "string_charat_utf8 failed");
 }
 END_TEST
 
 START_TEST (test_string_valid_utf8);
 {
-    bool valid  = string_valid_utf8(string_new_str("Hello World"));
+    bool valid  = string_valid_utf8(string_new_copy("Hello World"));
 	fail_unless (valid, "string_toupper_utf8 failed");
 }
 END_TEST

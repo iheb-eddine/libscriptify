@@ -71,14 +71,16 @@ string string_new(size_t size)
 	return (string)object_new((size+1)*sizeof(char));
 }
 
-string string_new_str(string str)    
-{
-    string s = string_new(strlen(str));
-    strcpy(s, str);         
-    return s;
+string string_new_copy(string str)    
+{	
+	//string_new already allocates space for the terminating \0 char.
+	string s = string_new(strlen(str));
+	//strcpy copies including the terminating \0 char.
+	strcpy(s, str);         
+	return s;
 }
 
-int utf8_getbytetype(char c)
+int string_utf8_getbytetype(char c)
 {
 	int i=0;
 	struct _utf8_range range=utf8_ranges[i];
@@ -96,7 +98,7 @@ bool utf8_ensure_correct_tail(string str,size_t index,int numbytes)
 	int i;
 	for(i=0; i<numbytes; i++)
 	{
-		if(utf8_getbytetype(str[index+i])!=UTF8_TAIL) 
+		if(string_utf8_getbytetype(str[index+i])!=UTF8_TAIL) 
 			return false;
 	}
 	return true;
@@ -105,7 +107,7 @@ bool utf8_ensure_correct_tail(string str,size_t index,int numbytes)
 size_t utf8_movenext(string str, size_t index)
 {
 	char byte=str[index];
-	int bytetype=utf8_getbytetype(byte);
+	int bytetype=string_utf8_getbytetype(byte);
 	switch(bytetype)
 	{
 		case UTF8_B1: return index+1;
@@ -240,7 +242,7 @@ string string_charat_utf8(string str, size_t index)
 
 bool string_valid_utf8(string str)
 {
-    while (utf8_getbytetype(*str++) != UTF8_ERROR && *str);
+    while (string_utf8_getbytetype(*str++) != UTF8_ERROR && *str);
 
     return (*str == 0);
 }
