@@ -62,7 +62,9 @@ END_TEST
 
 START_TEST (test_string_charat)
 {
-	//XXX
+	string s="hello";
+	fail_unless(string_charat(s,1)=='e',"string_charat failed");
+	fail_unless(string_charat(s,4)=='o',"string_charat failed");
 }
 END_TEST
 
