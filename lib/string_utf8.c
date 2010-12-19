@@ -473,7 +473,7 @@ int isspace(int c);
 * @param utf8character the character to check.
 * @return true, if the character is whitespace; false, if not.
 */
-bool utf8_isspace(string utf8character)
+bool isspace_utf8(string utf8character)
 {
 	/* XXX be careful for the definition of whitespace
 	http://www.cs.tut.fi/~jkorpela/chars/spaces.html

@@ -62,7 +62,7 @@ string string_tolower_utf8(string str);
 string string_toupper_utf8(string str);
 string string_charat_utf8(string str,size_t index);
 bool string_valid_utf8(string str);
-bool utf8_isspace(string utf8character);
+bool isspace_utf8(string utf8character);
 string string_trim_utf8(string str, bool left, bool right);
 
 /* string functions*/
